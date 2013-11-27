@@ -1,0 +1,13 @@
+{
+  "name": "model-jsonapi",
+  "description": "JSON API compliant plugin for component/model",
+  "dependencies": {
+  },
+  "development": {
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "main": "index.js"
+}
