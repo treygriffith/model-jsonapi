@@ -17,6 +17,7 @@ var statics = {
   plural: function (name) {
     if(name) {
       this._plural = name;
+      return this;
     }
     return this._plural || this.modelName.toLowerCase() + 's';
   }
