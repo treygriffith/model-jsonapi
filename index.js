@@ -43,7 +43,7 @@ var proto = {
       .send(payload)
       .end(function(res){
         if (res.error) return fn(error(res), res);
-        if (res.body && res.body[self.plural()]) self.primary(res.body[self.plural()][key]);
+        if (res.body && res.body[self.model.plural()]) self.primary(res.body[self.model.plural()][key]);
         self.dirty = {};
         self.model.emit('save', self, res);
         self.emit('save');
