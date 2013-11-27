@@ -35,7 +35,7 @@ var proto = {
     this.emit('saving');
 
     var payload = {};
-    payload[this.model.plural()] = self.toJSON();
+    payload[this.model.plural()] = [self.toJSON()];
 
     this.request
       .post(url)
@@ -60,7 +60,7 @@ var proto = {
     this.emit('saving');
 
     var payload = {};
-    payload[this.model.plural()] = self.toJSON();
+    payload[this.model.plural()] = [self.toJSON()];
 
     this.request
       .put(url)
