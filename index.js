@@ -20,6 +20,36 @@ var statics = {
       return this;
     }
     return this._plural || this.modelName.toLowerCase() + 's';
+  },
+  all: function (fn) {
+    var self = this;
+    var url = this.url('');
+    this.request
+      .get(url)
+      .set(this._headers)
+      .end(function(res){
+        if (res.error) return fn(error(res), null, res);
+        var col = new Collection;
+        if(res.body && res.body[self.plural()]) {
+          for (var i = 0, len = res.body[self.plural()].length; i < len; ++i) {
+            col.push(new self(res.body[i]));
+          }
+        }
+        fn(null, col, res);
+      });
+  },
+  get: function (id, fn) {
+    var self = this;
+    var url = this.url(id);
+    this.request
+      .get(url)
+      .set(this._headers)
+      .end(function(res){
+        if (res.error) return fn(error(res), null, res);
+        var body = res.body && res.body[self.plural()] ? res.body[self.plural()][0] : undefined;
+        var model = new self(body);
+        fn(null, model, res);
+      });
   }
 };
 
